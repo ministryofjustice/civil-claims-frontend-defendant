@@ -1,0 +1,3 @@
+== CIVIL CLAIMS FRONT-END DEFENDANT
+
+This application provides the user interface for the defendant to manage his/her civil claims.
