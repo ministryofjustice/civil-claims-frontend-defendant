@@ -8,4 +8,10 @@ class ApplicationController < ActionController::Base
   def home
     redirect_to defences_path
   end
+
+  def redirect_to_login_page_if_not_signed_in
+    unless signed_in?
+      redirect_to controller: 'users', action: 'login_screen'
+    end
+  end
 end

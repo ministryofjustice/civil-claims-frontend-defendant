@@ -29,6 +29,9 @@ module CivilClaimsFrontendDefendant
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # Authentication API Configuration
+    config.auth_client = Author::Client.new(ENV['API_HOST'])
+
     # API Configuration
     config.api_uri = "#{ENV['API_HOST']}/repossession_claims_api/v1"
     puts "API endpoint is #{config.api_uri}"

@@ -1,0 +1,17 @@
+- @hide_user_nav = true
+
+= # render 'partials/flash'
+
+%header.page-header.group
+  %h1 Sign in
+  %p.lead Sign in to...
+
+.container
+  = form_tag({ controller: 'users', action: 'create_session' }, method: 'post')
+  %fieldset.plain
+    %label(for='fullname') Full name
+    %input#fullname(type='text' name='email')
+    %label(for='password') Password
+    %input#password(type='password' name='password')
+  .action-buttons.cf
+    %input.button.primary.large.chevron.left(type='submit' value='Sign in')

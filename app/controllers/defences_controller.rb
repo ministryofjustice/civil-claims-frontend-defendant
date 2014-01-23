@@ -1,5 +1,7 @@
 class DefencesController < ApplicationController
 
+  before_action :redirect_to_login_page_if_not_signed_in
+
   include Wicked::Wizard
 
   steps :about_the_case, :personal_details, :finances, :check_details
