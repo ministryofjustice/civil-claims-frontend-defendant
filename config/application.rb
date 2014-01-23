@@ -5,11 +5,15 @@ require File.expand_path('../boot', __FILE__)
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+require 'active_resource'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
+
+puts "==== RAILS_ENV: #{ENV['RAILS_ENV']}"
+
+ENV['API_HOST'] ||= 'http://localhost:3111'
 
 module CivilClaimsFrontendDefendant
   class Application < Rails::Application
@@ -24,5 +28,9 @@ module CivilClaimsFrontendDefendant
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # API Configuration
+    config.api_uri = "#{ENV['API_HOST']}/repossession_claims_api/v1"
+    puts "API endpoint is #{config.api_uri}"
   end
 end

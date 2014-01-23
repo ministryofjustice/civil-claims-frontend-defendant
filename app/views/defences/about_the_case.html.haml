@@ -1,3 +1,44 @@
 %h1 Step 1 - About the case
 
-%p= link_to 'Continue to next step', next_wizard_path
+= form_for @defence, url: wizard_path, html: {class: 'form'}, method: 'PATCH' do |form|
+  .row
+    = yes_no :agree_behind_in_rent, "Do you agree that you've fallen behind in paying the rent?*", form
+  .row
+    = yes_no :agree_unpaid_rent_amount, "Do you agree that you owe £x in unpaid rent?".html_safe, form
+  .row
+    = amount_field :claimed_unpaid_rent_amount, "What do you think you owe?", form
+
+  .row
+    = yes_no :has_paid_towards_unpaid_rent, "Have you paid any money towards the unpaid rent since [date] (when the court case started)?".html_safe, form
+  .row
+    = amount_field :paid_towards_unpaid_rent_amount, 'Total amount paid', form
+  .row
+    = form.label :date_paid, 'When payment was made'
+    = form.date_select :date_paid
+
+  .row
+    = yes_no :has_agreed_instalments, 'Have you come to an agreement with the council about paying the unpaid rent in instalments?', form
+  .row
+    = amount_field :instalment_payment_amount, 'Payment amount', form
+    - # :instalment_payment_frequency select
+    per week
+
+  .row
+    = amount_field :afford_on_top_of_current_rent, 'How much could you afford to pay on top of the current rent?', form
+    - # :on_top_of_current_rent_frequency select
+    per week
+
+  .row
+    = yes_no :received_notice_seeking_possession, 'Has the council sent you a notice seeking possession (a letter to say you must leave the property)?*', form
+  .row
+    = form.label :received_notice_date, 'When did you receive the notice?'
+    = form.date_select :received_notice_date
+
+  .row
+    = yes_no :made_counterclaim_against_council, 'Have you made a counterclaim against the council?', form
+    = form.label :counterclaim_case_number, 'Case number'
+    = form.text_field :counterclaim_case_number
+
+  .row
+    = form.submit 'Continue to next step'
+

@@ -4,6 +4,8 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.2'
 
+gem 'activeresource', '~> 4.0.0'
+
 gem 'haml-rails'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -16,11 +18,16 @@ gem 'jquery-rails'
 
 gem 'wicked'
 
+gem 'author', github: 'ministryofjustice/author'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 
+group :development, :test do
+  gem 'pry'
+end
 group :test do
   gem 'webmock'
   gem 'rspec-rails'
