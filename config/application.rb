@@ -29,6 +29,14 @@ module CivilClaimsFrontendDefendant
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # HTTP default headers
+    ActionDispatch::Response.default_headers = {
+       'X-Frame-Options' => 'DENY',
+       'X-Content-Type-Options' => 'nosniff',
+       'X-XSS-Protection' => '1; mode=block',
+       'X-Content-Security-Policy' => "script-src 'self'"
+    }
+
     # API Configuration
     config.api_uri = "#{ENV['API_HOST']}/repossession_claims_api/v1"
     puts "API endpoint is #{config.api_uri}"
