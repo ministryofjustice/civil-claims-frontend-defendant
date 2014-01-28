@@ -30,7 +30,7 @@ module CivilClaimsFrontendDefendant
     # config.i18n.default_locale = :de
 
     # HTTP default headers
-    ActionDispatch::Response.default_headers = {
+    config.action_dispatch.default_headers = {
        'X-Frame-Options' => 'DENY',
        'X-Content-Type-Options' => 'nosniff',
        'X-XSS-Protection' => '1; mode=block',
